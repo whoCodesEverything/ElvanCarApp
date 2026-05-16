@@ -1,0 +1,47 @@
+<!-- 
+<p>vehicle-detail works!</p>
+
+ <div *ngIf="vehicle" class="card">
+  <div class="card-header">
+    Araç Detayı
+  </div>
+
+  <div class="card-body">
+    <p><strong>ID:</strong> {{ vehicle.id }}</p>
+
+    <p><strong>Brand:</strong> {{ vehicle.brand }}</p>
+    <p><strong>Model:</strong> {{ vehicle.model }}</p>
+    <p><strong>Year:</strong> {{ vehicle.yil }}</p>
+    <p><strong>KM:</strong> {{ vehicle.km | number }}</p>
+    <p><strong>Fuel:</strong> {{ vehicle.yakitTuru }}</p>
+    <p><strong>Status:</strong> {{ vehicle.status }}</p>
+
+  </div>
+</div> -->
+
+
+<div *ngIf="vehicle; else loading" class="card">
+  <div class="card-header">
+    Araç Detayı
+  </div>
+
+  <div class="card-body">
+    <p><strong>ID:</strong> {{ vehicle.id }}</p>
+    <p><strong>Marka:</strong> {{ vehicle.brand }}</p>
+    <p><strong>Model:</strong> {{ vehicle.model }}</p>
+    <p><strong>Yıl:</strong> {{ vehicle.yil }}</p>
+    <p><strong>KM:</strong> {{ vehicle.km | number }}</p>
+    <p><strong>Yakıt:</strong> {{ vehicle.yakitTuru }}</p>
+    <p><strong>Durum:</strong> {{ vehicle.status }}</p>
+  </div>
+</div>
+
+<ng-template #loading>
+  <!-- <p>Yükleniyor...</p> -->
+
+  <div *ngIf="vehicles.length>7" class="text-center my-2">
+  <button class="btn btn-primary" (click)="loadMore()">
+    More Vehicles
+  </button>
+</div>
+</ng-template>

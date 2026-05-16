@@ -1,0 +1,50 @@
+
+<div class="card">
+  <div class="card-header">
+    {{ title }}
+  </div>
+
+  <table class="table table-striped mb-0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Year</th>
+        <th>KM</th>
+        <th>Fuel</th>
+        <th>Status</th>
+        <th>İlanda</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let vehicle of vehicless" class="table-row-clickable" [routerLink]="['/vehicles', vehicle.id]">
+
+        <td>{{ vehicle.id }}</td>
+        <td>{{ vehicle.brandName || '-' }}</td>
+        <td>{{ vehicle.modelName || '-' }}</td>
+        <td>{{ vehicle.yil || '-' }}</td>
+        <td>{{ vehicle.km !== undefined ? (vehicle.km | number) : '-' }}</td>
+        <td>{{ vehicle.yakitTuru || '-' }}</td>
+        <td>{{ vehicle.status || '-' }}</td>
+        <td>
+          <span class="badge" [ngClass]="vehicle.ilanda ? 'bg-success' : 'bg-secondary'">
+            {{ vehicle.ilanda ? 'Evet' : 'Hayır' }}
+          </span>
+          
+        </td>
+        <td>
+          <button class="btn btn-sm btn-danger" (click)="delete(vehicle.id,$event)">
+            Sil
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="hasMore" class="text-center my-3">
+  <button class="btn btn-primary" (click)="loadMore()">
+    More Vehicles
+  </button>
+</div>
